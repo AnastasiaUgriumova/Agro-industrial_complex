@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title> Corparation</title>
+    <link rel="shortcut icon" href="/static/images/Landing.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+<header>
+    <nav class="navbar navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-brand">G &amp; A</div>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" aria-current="page" href="/">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">Открытая статистика</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#">О нас</a>
+                </li>
+            </ul>
+            <div>
+                <a class="btn btn-light" href="/registration">Регистрация</a>
+            </div>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4 mt-5">
+                <form action="#" id="FormReg" th:action="@{/registration}" th:object="${user}" method="post"
+                      class="row g-3 needs-validation"
+                      novalidate>
+                    <h2 class="text-center">Регистрация</h2>
+                    <div class="mb-1">
+                        <input type="email" th:field="*{username}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Введите email" required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите email.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <input type="password" th:field="*{password}" class="form-control" placeholder="Введите пароль"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите пароль.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <input type="password" th:field="*{confirmPassword}" class="form-control"
+                               placeholder="Повторите пароль"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите пароль.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <input type="text" th:field="*{confirmPassword}" class="form-control" placeholder="Имя"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите Имя.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <input type="text" th:field="*{confirmPassword}" class="form-control" placeholder="Фамилия"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите Фамилия.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <input type="text" th:field="*{confirmPassword}" class="form-control" placeholder="Отчество"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите Отчество.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <input type="tel" th:field="*{confirmPassword}" class="form-control" placeholder="Номер телефона"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите Номер телефона.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <input type="text" th:field="*{confirmPassword}" class="form-control"
+                               placeholder="Название организации"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите Название организации.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <label for="validationCustom01" class="form-label">Область</label>
+                        <select class="form-select" id="validationCustom01" required>
+                            <option selected disabled value="">Выберите...</option>
+                            <option>Амурская область</option>
+                            <option>Архангельская область</option>
+                            <option>Астраханская область</option>
+                            <option>Белгородская область</option>
+                            <option>Брянская область</option>
+                            <option>Владимирская область</option>
+                            <option>Волгоградская область</option>
+                            <option>Вологодская область</option>
+                            <option>Воронежская область</option>
+                            <option>Ивановская область</option>
+                            <option>Иркутская область</option>
+                            <option>Калининградская область</option>
+                            <option>Калужская область</option>
+                            <option>Кемеровская область</option>
+                            <option>Кировская область</option>
+                            <option>Костромская область</option>
+                            <option>Курганская область</option>
+                            <option>Курская область</option>
+                            <option>Ленинградская область</option>
+                            <option>Липецкая область</option>
+                            <option>Магаданская область</option>
+                            <option>Московская область</option>
+                            <option>Мурманская область</option>
+                            <option>Нижегородская область</option>
+                            <option>Новгородская область</option>
+                            <option>Новосибирская область</option>
+                            <option>Омская область</option>
+                            <option>Оренбургская область</option>
+                            <option>Орловская область</option>
+                            <option>Пензенская область</option>
+                            <option>Псковская область</option>
+                            <option>Ростовская область</option>
+                            <option>Рязанская область</option>
+                            <option>Самарская область</option>
+                            <option>Саратовская область</option>
+                            <option>Сахалинская область</option>
+                            <option>Свердловская область</option>
+                            <option>Смоленская область</option>
+                            <option>Тамбовская область</option>
+                            <option>Тверская область</option>
+                            <option>Томская область</option>
+                            <option>Тульская область</option>
+                            <option>Тюменская область</option>
+                            <option>Ульяновская область</option>
+                            <option>Челябинская область</option>
+                            <option>Ярославская область</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Пожалуйста, выберите корректную область.
+                        </div>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                            <label class="form-check-label" for="invalidCheck">
+                                Примите условия и соглашения
+                            </label>
+                            <div class="invalid-feedback">
+                                Вы должны принять перед отправкой.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button th:attr="onclick=|plusQty()|" class="btn btn-primary" type="submit">Отправить форму
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            'use strict'
+            // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Зацикливайтесь на них и предотвращайте отправку
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Заявка на регистрацию.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    В течение пяти рабочих дней на указанный Вами email поступит логин и пароль для входа в систему.
+
+                    Спасибо!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {keyboard: false})
+        var formReg = document.forms["FormReg"]
+        $(document).ready(function () {
+            myModal.show();
+        });
+        /*function plusQty(modalValue1) {
+            if(formReg.checkValidity()){
+                myModal.dispose();
+            }
+            console.log(formReg.checkValidity())
+        }*/
+    </script>
+    <script>
+    </script>
+</main>
+<footer class="fixed-bottom">
+    <nav class="navbar navbar-light bg-light">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="mailto:Athander@yandex.ru">Почта: Athander@yandex.ru</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="#">Github</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="tel:89997201268">телефон: 89997201268</a>
+            </li>
+        </ul>
+    </nav>
+</footer>
+</body>
+</html>
