@@ -3,6 +3,7 @@ package GandA.corporation.APK.model;
 import GandA.corporation.APK.model.Role;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -16,8 +17,50 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    private String email;
+
     private String password;
+
+    private String username;
+
+    private String surname;
+
+    private String patronymic;
+
+    private String phone;
+
+    private String region;
+
+    private Long company_code;
+
+    private boolean enabled;
+
+    @Transient
+    transient private String confirmPassword;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role roleUser;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company companyToUser;
+
+    public Role getRoleUser() {
+        return roleUser;
+    }
+
+    public void setRoleUser(Role roleUser) {
+        this.roleUser = roleUser;
+    }
+
+    public Company getCompanyToUser() {
+        return companyToUser;
+    }
+
+    public void setCompanyToUser(Company companyToUser) {
+        this.companyToUser = companyToUser;
+    }
 
     public String getEmail() {
         return email;
@@ -27,11 +70,45 @@ public class User {
         this.email = email;
     }
 
-    private String email;
-    private boolean enabled;
+    public String getSurname() {
+        return surname;
+    }
 
-    @Transient
-    transient private String confirmPassword;
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public Long getCompany_code() {
+        return company_code;
+    }
+
+    public void setCompany_code(Long company_code) {
+        this.company_code = company_code;
+    }
 
     public String getConfirmPassword() {
         return confirmPassword;
@@ -40,14 +117,6 @@ public class User {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -81,11 +150,4 @@ public class User {
         this.enabled = enabled;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 }

@@ -1,5 +1,6 @@
 package GandA.corporation.APK.config;
 
+import GandA.corporation.APK.security.MySimpleUrlAuthenticationSuccessHandler;
 import GandA.corporation.APK.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -51,19 +53,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/static/**").permitAll()
-                .antMatchers("/").anonymous().and().authorizeRequests().antMatchers().hasAnyAuthority("USER", "CREATOR/EDITOR", "ADMIN")
+                .antMatchers("/").anonymous()
+                .antMatchers("/index").hasAnyAuthority( "CREATEREDITOR")
                 .antMatchers("/registration").anonymous()
-                .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR/EDITOR")
-                .antMatchers("/edit/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/delete/**").hasAuthority("ADMIN")
+                .antMatchers( "/Land","/newLand","/saveLand","/editLand/{id}","/editLandSave/{id}","/deleteLand/{id}" ).hasAnyAuthority("CREATEREDITOR")
+                .antMatchers("/manager","/newCompany","/saveCompany","/editCompany/{id}","/editCompanySave{id}","/addUserToCompany/{id}","/addUserToCompanySave{idCompany}","/deleteUserToCompany/{id}","/deleteSelectUserToCompany","/deleteCompany/{id}").hasAuthority("MANAGER")
+                .antMatchers("/admin","/editUser/{id}","/editUserSave{Userid}","/editUserPassword/{id}","/editUserPasswordSave{Userid}","/deleteUser/{id}").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
-                .loginPage("/")
+                .loginPage("/login")
                 .loginProcessingUrl("/login")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/",true)
+                .successHandler(myAuthenticationSuccessHandler())
                 .failureUrl("/login?error=true")
                 .and()
                 .logout().permitAll()
@@ -71,6 +74,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedPage("/403")
         ;
     }
+
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MySimpleUrlAuthenticationSuccessHandler();
+    }
+
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers(

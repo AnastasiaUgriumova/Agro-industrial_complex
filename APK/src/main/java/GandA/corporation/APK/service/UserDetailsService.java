@@ -21,12 +21,11 @@ public class UserDetailsService implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<Role> roles = user.getRoles();
+        Role role = user.getRoleUser();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-        for (Role role : roles) {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
+
 
         return authorities;
     }
@@ -38,7 +37,7 @@ public class UserDetailsService implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return user.getEmail();
     }
 
     @Override

@@ -4,17 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title> Corparation</title>
-    <link rel="shortcut icon" href="/static/images/Landing.png" type="image/x-icon">
+    <link rel="shortcut icon" th:href="@{../static/images/Landing.png}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/main.css">
 
+    <link media="all" rel="stylesheet" th:href="@{../static/css/main.css}" type="text/css"/>
 </head>
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
         integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
         crossorigin="anonymous"></script>
@@ -25,104 +24,37 @@
     <nav class="navbar navbar-light bg-light fixed-top">
         <div class="container-fluid">
             <div class="navbar-brand">G &amp; A</div>
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link text-dark" aria-current="page" href="/">Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Открытая статистика</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">О нас</a>
-                </li>
-            </ul>
             <div>
-                <a class="btn btn-light" href="/login">Вход</a>
+                <form th:action="@{/logout}" method="post">
+                    <a class="btn btn-light" href="/manager">Назад</a>
+                    <input class="btn btn-light" type="submit" value="Выход"/>
+                </form>
             </div>
         </div>
     </nav>
 </header>
-<main>
+<main class="content " style="margin-top: 60px">
     <div class="container">
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4 mt-5">
-                <form action="#" id="FormReg" th:action="@{/registration}" th:object="${user}" method="post"
+                <form action="#" th:object="${company}" th:action="@{'/editCompanySave/' + ${company.id}}" method="post"
                       class="row g-3 needs-validation"
                       novalidate>
-                    <h2 class="text-center">Регистрация</h2>
+                    <h1 class="text-center">Изменить данные компании</h1>
                     <div class="mb-1">
-                        <input type="email" th:field="*{email}" class="form-control"
-                               aria-describedby="emailHelp" placeholder="Введите email" required>
+                        <h6>Название компании</h6>
+                        <input type="text" th:field="*{company_name}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Название компании" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите email.
+                            Пожалуйста, введите Название компании.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <input type="password" th:field="*{password}" class="form-control" placeholder="Введите пароль"
-                               required>
-                        <div class="valid-feedback">
-                            OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            Пожалуйста, введите пароль.
-                        </div>
-                    </div>
-                    <div class="mb-1">
-                        <input type="password" th:field="*{confirmPassword}" class="form-control"
-                               placeholder="Повторите пароль"
-                               required>
-                        <div class="valid-feedback">
-                            OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            Пожалуйста, введите пароль.
-                        </div>
-                    </div>
-                    <div class="mb-1">
-                        <input type="text" th:field="*{surname}" class="form-control" placeholder="Фамилия"
-                               required>
-                        <div class="valid-feedback">
-                            OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            Пожалуйста, введите фамилию.
-                        </div>
-                    </div>
-                    <div class="mb-1">
-                        <input type="text" th:field="*{username}" class="form-control" placeholder="Имя"
-                               required>
-                        <div class="valid-feedback">
-                            OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            Пожалуйста, введите имя.
-                        </div>
-                    </div>
-                    <div class="mb-1">
-                        <input type="text" th:field="*{patronymic}" class="form-control" placeholder="Отчество"
-                               required>
-                        <div class="valid-feedback">
-                            OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            Пожалуйста, введите отчество.
-                        </div>
-                    </div>
-                    <div class="mb-1">
-                        <input type="tel" th:field="*{phone}" class="form-control" placeholder="Номер телефона"
-                               required>
-                        <div class="valid-feedback">
-                            OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            Пожалуйста, введите номер телефона.
-                        </div>
-                    </div>
-                    <div class="mb-1">
+                        <h6>Регион</h6>
                         <select th:field="*{region}" class="form-select" required>
                             <option selected disabled value="">Выберите область...</option>
                             <option value="Амурская область">Амурская область</option>
@@ -179,10 +111,94 @@
                             OK!
                         </div>
                     </div>
-
+                    <div class="mb-1">
+                        <h6>Номер телефона</h6>
+                        <input type="text" th:field="*{phone}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Номер телефона" required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите Номер телефона.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <h6>Email</h6>
+                        <input type="email" th:field="*{email}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Email" required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите Email.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <h6>ИНН</h6>
+                        <input type="text" th:field="*{INN}" class="form-control" placeholder="ИНН"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите ИНН.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <h6>Вид собственности</h6>
+                        <input type="text" th:field="*{type_property}" class="form-control"
+                               placeholder="Вид собственности"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите вид собственности.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <h6>Район</h6>
+                        <input type="text" th:field="*{area}" class="form-control" placeholder="Район"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите район.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <h6>Основной вид продукции</h6>
+                        <input type="text" th:field="*{main_product}" class="form-control"
+                               placeholder="Основной вид продукции"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите основной вид продукции.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <h6>Число работников</h6>
+                        <input type="number" th:field="*{amount_workers}" class="form-control"
+                               placeholder="Число работников"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите Число работников.
+                        </div>
+                    </div>
+                    <div class="mb-1 btn-group" aria-label="Basic checkbox toggle button group">
+                        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                            <input th:checked="${company.active}" name="active" type="checkbox" class="btn-check" id="btncheck1">
+                            <label class="btn btn-outline-primary" for="btncheck1">Активировать</label>
+                        </div>
+                    </div>
                     <div class="col-12">
-                        <!--th:attr="onclick=|plusQty()|"-->
-                        <button type="submit" class="btn btn-primary">Отправить заявку на регистрацию
+                        <button type="submit" class="btn btn-primary">Сохранить
                         </button>
                     </div>
                 </form>
@@ -209,47 +225,15 @@
                 })
         })()
     </script>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Заявка на регистрацию.</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    В течение пяти рабочих дней на указанный Вами email поступит логин и пароль для входа в систему.
-
-                    Спасибо!
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {keyboard: false})
-        var formReg = document.forms["FormReg"]
-        $(document).ready(function () {
-            myModal.show();
-        });
-        /*function plusQty(modalValue1) {
-            if(formReg.checkValidity()){
-                myModal.dispose();
-            }
-            console.log(formReg.checkValidity())
-        }*/
-    </script>
 </main>
-<footer class="fixed-bottom">
-    <nav class="navbar navbar-light bg-light">
+<footer>
+    <nav class="navbar  navbar-light bg-light">
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link text-secondary" href="mailto:Athander@yandex.ru">Почта: Athander@yandex.ru</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-secondary" href="#">Github</a>
+                <a class="nav-link text-secondary" href="https://github.com/AnastasiaUgriumova/Agro-industrial_complex">Github</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-secondary" href="tel:89997201268">телефон: 89997201268</a>
@@ -259,3 +243,5 @@
 </footer>
 </body>
 </html>
+
+
