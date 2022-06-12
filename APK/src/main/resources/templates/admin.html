@@ -66,7 +66,7 @@
                     <td th:text="${user.phone}">Номер</td>
                     <td th:text="${user.region}">Регион</td>
                     <td th:text="${user.company_code}">Код компании</td>
-                    <td th:text="${user.getRoleUser().getName()} ?: '(Пользователь не имеет роли)'">Роль</td>
+                    <td th:text="${user.getRoleUser() ne null} ? ${user.getRoleUser().getName()} : 'У пользователя нет роли'">Роль</td>
                     <td th:text="${user.isEnabled()}">Активен</td>
 
                     <td><a class="btn btn-warning" th:href="@{'/editUser/' + ${user.id}}">Изменить</a></td>

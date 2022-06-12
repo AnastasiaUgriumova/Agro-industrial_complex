@@ -26,7 +26,7 @@
             <div class="navbar-brand">G &amp; A</div>
             <div>
                 <form th:action="@{/logout}" method="post">
-                    <a class="btn btn-light" href="/Land">Назад</a>
+                    <a class="btn btn-light" href="/PlannedProduction">Назад</a>
                     <input class="btn btn-light" type="submit" value="Выход"/>
                 </form>
             </div>
@@ -38,80 +38,68 @@
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4 mt-5">
-                <form action="#" th:object="${land}"  th:action="@{'/editLandSave/' + ${land.id}}" method="post"
+                <form action="#" th:object="${plannedProduction}"  th:action="@{'/editPlannedProductionSave/' + ${plannedProduction.id}}" method="post"
                       class="row g-3 needs-validation"
                       novalidate>
-                    <h1 class="text-center">Изменить земельный участок</h1>
+                    <h1 class="text-center">Изменить планируемое производство</h1>
                     <div class="mb-1">
-                        <h6>Местоположение</h6>
-                        <input type="text" th:field="*{location}" class="form-control"
-                               aria-describedby="emailHelp" placeholder="Местоположение" required>
+                        <h6>Наименование продукта</h6>
+                        <input type="text" th:field="*{product_name}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Наименование продукта" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите местоположение.
+                            Пожалуйста, введите наименование продукта.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Вид разрешенного использования</h6>
-                        <input type="text" th:field="*{type_permitted_use}" class="form-control"
-                               aria-describedby="emailHelp" placeholder="Вид разрешенного использования" required>
+                        <h6>Тип продукта</h6>
+                        <input type="text" th:field="*{product_type}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Тип продукта" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите вид разрешенного использования.
+                            Пожалуйста, введите тип продукта.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Состояние</h6>
-                        <input type="text" th:field="*{actual}" class="form-control"
-                               aria-describedby="emailHelp" placeholder="Состояние" required>
+                        <h6>Плановая себестоимость</h6>
+                        <input type="number" th:field="*{planned_property}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Плановая себестоимость" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите состояние.
+                            Пожалуйста, введите плановая себестоимость.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Фактическое использование</h6>
-                        <input type="text" th:field="*{conditions}" class="form-control" placeholder="Фактическое использование"
-                               required>
+                        <h6>Плановая выручка</h6>
+                        <input type="number" th:field="*{planned_revenue}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Плановая выручка" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите фактическое использование.
+                            Пожалуйста, введите плановая выручка.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Тип севооборота</h6>
-                        <input type="text" th:field="*{crop_rotation_type}" class="form-control"
-                               placeholder="Тип севооборота"
-                               required>
+                        <h6>Плановая прибыль</h6>
+                        <input type="number" th:field="*{planned_profit}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Плановая прибыль" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите тип севооборота.
+                            Пожалуйста, введите плановая прибыль.
                         </div>
-                    </div>
-                    <div class="mb-1">
-                        <h6>Площадь з.у</h6>
-                        <input type="text" th:field="*{square}" class="form-control" placeholder="Площадь з.у"
-                               required>
-                        <div class="valid-feedback">
-                            OK!
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Сохранить
+                            </button>
                         </div>
-                        <div class="invalid-feedback">
-                            Пожалуйста, введите площадь з.у.
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Сохранить
-                        </button>
                     </div>
                 </form>
             </div>

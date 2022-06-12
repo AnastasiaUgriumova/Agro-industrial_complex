@@ -168,6 +168,17 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Адрес</h6>
+                        <input type="text" th:field="*{address}" class="form-control" placeholder="Адрес"
+                               required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите адрес.
+                        </div>
+                    </div>
+                    <div class="mb-1">
                         <h6>Основной вид продукции</h6>
                         <input type="text" th:field="*{main_product}" class="form-control"
                                placeholder="Основной вид продукции"

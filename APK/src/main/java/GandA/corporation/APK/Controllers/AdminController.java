@@ -43,7 +43,6 @@ public class AdminController {
         ModelAndView mav = new ModelAndView("edit_user");
 
         User user = userService.get(id);
-        System.out.println(user.isEnabled());
         List<Role> rolelist = roleService.listAll();
         mav.addObject("user", user);
         mav.addObject("rolelist", rolelist);
@@ -62,7 +61,6 @@ public class AdminController {
         userSave.setPhone(user.getPhone());
         userSave.setRegion(user.getRegion());
         userSave.setEnabled(user.isEnabled());
-        System.out.println(user.isEnabled());
         userSave.setRoleUser(roleService.get(Roleid));
         userService.saveNotPassword(userSave);
 

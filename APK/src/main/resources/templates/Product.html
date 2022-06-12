@@ -34,9 +34,9 @@
 </header>
 <main class="content " style="margin-top: 60px">
     <div class="container-fluid">
-        <h1 class="text-center">Затраты на производство</h1>
+        <h1 class="text-center">Продукт</h1>
         <div>
-            <a class="btn btn-primary" href="/newProductionCosts">Дабавить новый затраты на производство</a>
+            <a class="btn btn-primary" href="/newProduct">Дабавить новый продукт</a>
         </div>
 
         <br/><br/>
@@ -45,10 +45,11 @@
                 <thead>
                 <tr>
                     <th scope="col">Продукт</th>
-                    <th scope="col">Оплата труда </th>
-                    <th scope="col">Материальные затраты</th>
-                    <th scope="col">Амортизация</th>
-                    <th scope="col">Прочие</th>
+                    <th scope="col">Дата производства</th>
+                    <th scope="col">Единица измерения</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Расход на производство</th>
+                    <th scope="col">Себестоимость</th>
 
                     <th>Изменить</th>
                     <th>Удалить</th>
@@ -56,15 +57,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="table-active" th:each="productionCosts : ${productionCostsList}">
-                    <td th:text="${productionCosts.product_type}">Местоположение</td>
-                    <td th:text="${productionCosts.salary}">Местоположение</td>
-                    <td th:text="${productionCosts.material_costs}">Местоположение</td>
-                    <td th:text="${productionCosts.depreciation_costs}">Местоположение</td>
-                    <td th:text="${productionCosts.other_costs}">Местоположение</td>
+                <tr class="table-active" th:each="product : ${productList}">
+                    <td th:text="${product.product_type}">Продукт</td>
+                    <td th:text="${product.date_manufacture}">Дата производства</td>
+                    <td th:text="${product.unit}">Единица измерения</td>
+                    <td th:text="${product.amount}">Количество</td>
+                    <td th:text="${product.production_cost}">Расход на производство</td>
+                    <td th:text="${product.cost_price}">Себестоимость</td>
 
-                    <td><a class="btn btn-warning" th:href="@{'/editProductionCosts/' + ${productionCosts.id}}">Изменить</a></td>
-                    <td><a class="btn btn-danger" th:href="@{'/deleteProductionCosts/' + ${productionCosts.id}}">Удалить</a></td>
+
+                    <td><a class="btn btn-warning" th:href="@{'/editProduct/' + ${product.id}}">Изменить</a></td>
+                    <td><a class="btn btn-danger" th:href="@{'/deleteProduct/' + ${product.id}}">Удалить</a></td>
                 </tr>
                 </tbody>
             </table>

@@ -26,7 +26,7 @@
             <div class="navbar-brand">G &amp; A</div>
             <div>
                 <form th:action="@{/logout}" method="post">
-                    <a class="btn btn-light" href="/Land">Назад</a>
+                    <a class="btn btn-light" href="/ProductionCosts">Назад</a>
                     <input class="btn btn-light" type="submit" value="Выход"/>
                 </form>
             </div>
@@ -38,75 +38,63 @@
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4 mt-5">
-                <form action="#" th:object="${land}"  th:action="@{'/editLandSave/' + ${land.id}}" method="post"
+                <form action="#" th:object="${productionCosts}"  th:action="@{'/editProductionCostsSave/' + ${productionCosts.id}}" method="post"
                       class="row g-3 needs-validation"
                       novalidate>
-                    <h1 class="text-center">Изменить земельный участок</h1>
+                    <h1 class="text-center">Изменить затраты на производство</h1>
                     <div class="mb-1">
-                        <h6>Местоположение</h6>
-                        <input type="text" th:field="*{location}" class="form-control"
-                               aria-describedby="emailHelp" placeholder="Местоположение" required>
+                        <h6>Продукт</h6>
+                        <input type="text" th:field="*{product_type}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Продукт" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите местоположение.
+                            Пожалуйста, введите продукт.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Вид разрешенного использования</h6>
-                        <input type="text" th:field="*{type_permitted_use}" class="form-control"
-                               aria-describedby="emailHelp" placeholder="Вид разрешенного использования" required>
+                        <h6>Оплата труда</h6>
+                        <input type="text" th:field="*{salary}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Оплата труда" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите вид разрешенного использования.
+                            Пожалуйста, введите оплата труда.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Состояние</h6>
-                        <input type="text" th:field="*{actual}" class="form-control"
-                               aria-describedby="emailHelp" placeholder="Состояние" required>
+                        <h6>Материальные затраты</h6>
+                        <input type="text" th:field="*{material_costs}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Материальные затраты" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите состояние.
+                            Пожалуйста, введите материальные затраты.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Фактическое использование</h6>
-                        <input type="text" th:field="*{conditions}" class="form-control" placeholder="Фактическое использование"
-                               required>
+                        <h6>Амортизация</h6>
+                        <input type="text" th:field="*{depreciation_costs}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Амортизация" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите фактическое использование.
+                            Пожалуйста, введите амортизация.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Тип севооборота</h6>
-                        <input type="text" th:field="*{crop_rotation_type}" class="form-control"
-                               placeholder="Тип севооборота"
-                               required>
+                        <h6>Прочие</h6>
+                        <input type="text" th:field="*{other_costs}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Прочие" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите тип севооборота.
-                        </div>
-                    </div>
-                    <div class="mb-1">
-                        <h6>Площадь з.у</h6>
-                        <input type="text" th:field="*{square}" class="form-control" placeholder="Площадь з.у"
-                               required>
-                        <div class="valid-feedback">
-                            OK!
-                        </div>
-                        <div class="invalid-feedback">
-                            Пожалуйста, введите площадь з.у.
+                            Пожалуйста, введите прочие.
                         </div>
                     </div>
                     <div class="col-12">

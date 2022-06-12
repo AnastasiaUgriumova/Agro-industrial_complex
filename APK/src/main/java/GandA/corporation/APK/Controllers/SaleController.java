@@ -1,6 +1,7 @@
 package GandA.corporation.APK.Controllers;
 
         import GandA.corporation.APK.model.Land;
+        import GandA.corporation.APK.model.Sale;
         import GandA.corporation.APK.model.User;
         import GandA.corporation.APK.service.*;
         import org.springframework.beans.factory.annotation.Autowired;
@@ -15,55 +16,19 @@ package GandA.corporation.APK.Controllers;
         import java.util.List;
 
 @Controller
-public class LandController {
+public class SaleController {
 
     @Autowired
     private CompanyService companyService;
 
     @Autowired
-    private  UserService userService;
+    private UserService userService;
 
     @Autowired
-    private LandService landService;
+    private SaleService saleService;
 
-    @RequestMapping("/Land")
-    public String viewLandPage(Model model) {
-
-        if(companyService.AunHaveCompany()){
-            return "error_HasNoCompany";
-        }
-        if(companyService.AunCompanyIsActive()){
-            return "error_HasCompanyNoActive";
-        }
-        User userAunt = userService.getAuntUser();
-
-        if(userAunt.getCompanyToUser().getCompanyLand() != null) {
-            List<Land> landList = userAunt.getCompanyToUser().getCompanyLand();
-            model.addAttribute("landList", landList);
-        }
-        return "Land";
-    }
-
-    @RequestMapping("/newLand")
-    public String showNewLandForm(Model model) {
-
-        if(companyService.AunHaveCompany()){
-            return "error_HasNoCompany";
-        }
-        if(companyService.AunCompanyIsActive()){
-            return "error_HasCompanyNoActive";
-        }
-
-
-        Land land = new Land();
-
-        model.addAttribute("land", land);
-
-        return "new_Land";
-    }
-
-    @RequestMapping(value = "/saveLand", method = RequestMethod.POST)
-    public String saveLand(@ModelAttribute("land") Land land) {
+    @RequestMapping("/Sale")
+    public String viewSalePage(Model model) {
 
         if(companyService.AunHaveCompany()){
             return "error_HasNoCompany";
@@ -72,15 +37,51 @@ public class LandController {
             return "error_HasCompanyNoActive";
         }
         User userAunt = userService.getAuntUser();
-        land.setCompanyToLand(userAunt.getCompanyToUser());;
-        landService.save(land);
 
-        return "redirect:/Land";
+        if(userAunt.getCompanyToUser().getCompanySale() != null) {
+            List<Sale> saleList = userAunt.getCompanyToUser().getCompanySale();
+            model.addAttribute("saleList", saleList);
+        }
+        return "Sale";
     }
 
-    @RequestMapping("/editLand/{id}")
+    @RequestMapping("/newSale")
+    public String showNewSaleForm(Model model) {
+
+        if(companyService.AunHaveCompany()){
+            return "error_HasNoCompany";
+        }
+        if(companyService.AunCompanyIsActive()){
+            return "error_HasCompanyNoActive";
+        }
+
+
+        Sale sale = new Sale();
+
+        model.addAttribute("sale", sale);
+
+        return "new_Sale";
+    }
+
+    @RequestMapping(value = "/saveSale", method = RequestMethod.POST)
+    public String saveSale(@ModelAttribute("sale") Sale sale) {
+
+        if(companyService.AunHaveCompany()){
+            return "error_HasNoCompany";
+        }
+        if(companyService.AunCompanyIsActive()){
+            return "error_HasCompanyNoActive";
+        }
+        User userAunt = userService.getAuntUser();
+        sale.setCompanyToSale(userAunt.getCompanyToUser());;
+        saleService.save(sale);
+
+        return "redirect:/Sale";
+    }
+
+    @RequestMapping("/editSale/{id}")
     public ModelAndView showEditLand(@PathVariable(name = "id") Long id) {
-        ModelAndView mav = new ModelAndView("edit_Land");
+        ModelAndView mav = new ModelAndView("edit_Sale");
 
         if(companyService.AunHaveCompany()){
             mav = new ModelAndView("error_HasNoCompany");
@@ -90,14 +91,14 @@ public class LandController {
         }
 
 
-        Land land = landService.get(id);
-        mav.addObject("land", land);
+        Sale sale = saleService.get(id);
+        mav.addObject("sale", sale);
 
         return mav;
     }
 
-    @RequestMapping(value = "/editLandSave/{id}", method = RequestMethod.POST)
-    public String editLandSave(@ModelAttribute("land") Land land,@PathVariable(name = "id") Long id) {
+    @RequestMapping(value = "/editSaleSave/{id}", method = RequestMethod.POST)
+    public String editLandSave(@ModelAttribute("sale") Sale sale,@PathVariable(name = "id") Long id) {
 
         if(companyService.AunHaveCompany()){
             return "error_HasNoCompany";
@@ -107,21 +108,22 @@ public class LandController {
         }
         User userAunt = userService.getAuntUser();
 
-        Land landSave = landService.get(id);
-        landSave.setCompanyToLand(userAunt.getCompanyToUser());
-        landSave.setLocation(land.getLocation());
-        landSave.setType_permitted_use(land.getType_permitted_use());
-        landSave.setActual(land.getActual());
-        landSave.setConditions(land.getConditions());
-        landSave.setCrop_rotation_type(land.getCrop_rotation_type());
-        landSave.setSquare(land.getSquare());
-        landService.save(landSave);
+        Sale saleSave = saleService.get(id);
+        saleSave.setCompanyToSale(userAunt.getCompanyToUser());
+        saleSave.setProductType(sale.getProductType());
+        saleSave.setDateSale(sale.getDateSale());
+        saleSave.setUnit(sale.getUnit());
+        saleSave.setAmount(sale.getAmount());
+        saleSave.setRevenue(sale.getRevenue());
+        saleSave.setProfit(sale.getProfit());
 
-        return "redirect:/Land";
+        saleService.save(saleSave);
+
+        return "redirect:/Sale";
     }
 
-    @RequestMapping("/deleteLand/{id}")
-    public String deleteLand(@PathVariable(name = "id") Long id) {
+    @RequestMapping("/deleteSale/{id}")
+    public String deleteSale(@PathVariable(name = "id") Long id) {
 
         if(companyService.AunHaveCompany()){
             return "error_HasNoCompany";
@@ -130,8 +132,8 @@ public class LandController {
             return "error_HasCompanyNoActive";
         }
 
-        landService.delete(id);
+        saleService.delete(id);
 
-        return "redirect:/Land";
+        return "redirect:/Sale";
     }
 }

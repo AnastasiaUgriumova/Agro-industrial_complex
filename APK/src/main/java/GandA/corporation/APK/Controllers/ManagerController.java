@@ -86,6 +86,7 @@ public class ManagerController {
         companySave.setINN(company.getINN());
         companySave.setType_property(company.getType_property());
         companySave.setArea(company.getArea());
+        companySave.setAddress(company.getAddress());
         companySave.setMain_product(company.getMain_product());
         companySave.setAmount_workers(company.getAmount_workers());
         companySave.setActive(company.isActive());

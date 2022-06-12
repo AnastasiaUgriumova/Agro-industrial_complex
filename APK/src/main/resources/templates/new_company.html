@@ -43,6 +43,7 @@
                       novalidate>
                     <h1 class="text-center">Добавить компанию</h1>
                     <div class="mb-1">
+                        <h6>Выберите пользователя</h6>
                         <select th:field="*{id}" class="form-select">
                             <option selected disabled value="">Выберите пользователя...</option>
                             <option th:each="User : ${listUsers}"
@@ -51,6 +52,7 @@
                         </select>
                     </div>
                     <div class="mb-1">
+                        <h6>Название компании</h6>
                         <input type="text" th:field="*{company_name}" class="form-control"
                                aria-describedby="emailHelp" placeholder="Название компании" required>
                         <div class="valid-feedback">
@@ -61,6 +63,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Регион</h6>
                         <select th:field="*{region}" class="form-select" required>
                             <option selected disabled value="">Выберите область...</option>
                             <option value="Амурская область">Амурская область</option>
@@ -118,6 +121,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Номер телефона</h6>
                         <input type="text" th:field="*{phone}" class="form-control"
                                aria-describedby="emailHelp" placeholder="Номер телефона" required>
                         <div class="valid-feedback">
@@ -128,6 +132,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Email</h6>
                         <input type="email" th:field="*{email}" class="form-control"
                                aria-describedby="emailHelp" placeholder="Email" required>
                         <div class="valid-feedback">
@@ -138,6 +143,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Код компании</h6>
                         <input type="number" th:field="*{company_code}" class="form-control"
                                aria-describedby="emailHelp" placeholder="Код предприятия" required>
                         <div class="valid-feedback">
@@ -148,6 +154,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>ИНН</h6>
                         <input type="text" th:field="*{INN}" class="form-control" placeholder="ИНН"
                                required>
                         <div class="valid-feedback">
@@ -158,6 +165,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Вид собственности</h6>
                         <input type="text" th:field="*{type_property}" class="form-control"
                                placeholder="Вид собственности"
                                required>
@@ -169,6 +177,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Район</h6>
                         <input type="text" th:field="*{area}" class="form-control" placeholder="Район"
                                required>
                         <div class="valid-feedback">
@@ -179,6 +188,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Адрес</h6>
                         <input type="text" th:field="*{address}" class="form-control" placeholder="Адрес"
                                required>
                         <div class="valid-feedback">
@@ -189,6 +199,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Отрасаль</h6>
                         <input type="text" th:field="*{industry}" class="form-control" placeholder="Отрасаль"
                                required>
                         <div class="valid-feedback">
@@ -199,6 +210,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h1>Основной вид продукции</h1>
                         <input type="text" th:field="*{main_product}" class="form-control"
                                placeholder="Основной вид продукции"
                                required>
@@ -210,6 +222,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h1>Число работников</h1>
                         <input type="number" th:field="*{amount_workers}" class="form-control"
                                placeholder="Число работников"
                                required>

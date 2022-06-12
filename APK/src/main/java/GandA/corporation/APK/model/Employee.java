@@ -23,9 +23,9 @@ public class Employee {
 
     private String speciality;
 
-    private String total_work_Experience;
+    private String total_work_experience;
 
-    private String company_work_Experience;
+    private String company_work_experience;
 
     private String job_title;
 
@@ -45,6 +45,22 @@ public class Employee {
 
     public void setCompanyToEmployee(Company companyToEmployee) {
         this.companyToEmployee = companyToEmployee;
+    }
+
+    public String getTotal_work_experience() {
+        return total_work_experience;
+    }
+
+    public void setTotal_work_experience(String total_work_experience) {
+        this.total_work_experience = total_work_experience;
+    }
+
+    public String getCompany_work_experience() {
+        return company_work_experience;
+    }
+
+    public void setCompany_work_experience(String company_work_experience) {
+        this.company_work_experience = company_work_experience;
     }
 
     public Long getId() {
@@ -101,22 +117,6 @@ public class Employee {
 
     public void setSpeciality(String speciality) {
         this.speciality = speciality;
-    }
-
-    public String getTotal_work_Experience() {
-        return total_work_Experience;
-    }
-
-    public void setTotal_work_Experience(String total_work_Experience) {
-        this.total_work_Experience = total_work_Experience;
-    }
-
-    public String getCompany_work_Experience() {
-        return company_work_Experience;
-    }
-
-    public void setCompany_work_Experience(String company_work_Experience) {
-        this.company_work_Experience = company_work_Experience;
     }
 
     public String getJob_title() {

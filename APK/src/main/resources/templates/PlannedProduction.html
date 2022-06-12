@@ -1,10 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title> Corparation</title>
+    <link media="all" rel="stylesheet" th:href="@{../static/css/main.css}" type="text/css"/>
+    <link rel="shortcut icon" th:href="@{../static/images/Landing.png}" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+<header>
+    <nav class="navbar navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-brand">G &amp; A</div>
+            <div>
+                <form th:action="@{/logout}" method="post">
+                    <a class="btn btn-light" href="/index">Назад</a>
+                    <input class="btn btn-light" type="submit" value="Выход"/>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="content " style="margin-top: 60px">
+    <div class="container-fluid">
+        <h1 class="text-center">Планируемое производство</h1>
+        <div>
+            <a class="btn btn-primary" href="/newPlannedProduction">Дабавить новое планируемое производство</a>
+        </div>
 
+        <br/><br/>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered" border="1" cellpadding="10">
+                <thead>
+                <tr>
+                    <th scope="col">Тип продукта</th>
+                    <th scope="col">Наименование продукта</th>
+                    <th scope="col">Плановая себестоимость</th>
+                    <th scope="col">Плановая выручка</th>
+                    <th scope="col">Плановая прибыль</th>
+
+                    <th>Изменить</th>
+                    <th>Удалить</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="table-active" th:each="PlannedProduction : ${plannedProductionList}">
+                    <td th:text="${PlannedProduction.product_type}">Тип продукта</td>
+                    <td th:text="${PlannedProduction.product_name}">Наименование продукта</td>
+                    <td th:text="${PlannedProduction.planned_property}">Плановая себестоимость</td>
+                    <td th:text="${PlannedProduction.planned_revenue}">Плановая выручка</td>
+                    <td th:text="${PlannedProduction.planned_profit}">Плановая прибыль</td>
+
+                    <td><a class="btn btn-warning" th:href="@{'/editPlannedProduction/' + ${PlannedProduction.id}}">Изменить</a></td>
+                    <td><a class="btn btn-danger" th:href="@{'/deletePlannedProduction/' + ${PlannedProduction.id}}">Удалить</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<footer>
+    <nav class="navbar  navbar-light bg-light">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="mailto:Athander@yandex.ru">Почта: Athander@yandex.ru</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="https://github.com/AnastasiaUgriumova/Agro-industrial_complex">Github</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-secondary" href="tel:89997201268">телефон: 89997201268</a>
+            </li>
+        </ul>
+    </nav>
+</footer>
 </body>
 </html>
+
+

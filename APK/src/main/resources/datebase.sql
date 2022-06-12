@@ -80,7 +80,8 @@ CREATE TABLE employee
     company_id int,
     KEY employee_fk_company (company_id),
     CONSTRAINT employee_fk_company FOREIGN KEY (company_id) REFERENCES company (company_id)  ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (employee_id)
+    PRIMARY KEY (employee_id),
+    UNIQUE KEY email_UNIQUE (email)
 );
 
 CREATE TABLE plannedProduction
@@ -174,6 +175,7 @@ CREATE TABLE sale
     unit         varchar(45) NOT NULL,
     amount       int(11)     NOT NULL,
     revenue      int(11),
+    price          int(11),
     profit       int(11),
     company_id int,
     product_id int,
@@ -211,14 +213,3 @@ VALUES ('none5@bk.ru', 4, '$2a$11$uSXS6rLJ91WjgOHhEGDx..VGs7MkKZV68Lv5r1uwFu7Hgt
 INSERT INTO users (email, role_id, password, username, surname, patronymic, phone, region, enabled)
 VALUES ('none6@bk.ru', 4, '$2a$11$uSXS6rLJ91WjgOHhEGDx..VGs7MkKZV68Lv5r1uwFu7HgtRn3dcXG', 'admin', 'none', 'none',
         'none', 'none', '1');
-
-
-/*SET FOREIGN_KEY_CHECKS = 0;
-INSERT INTO users_roles (user_id, role_id)
-VALUES (1, 1); -- user patrick has role VIEWER
-INSERT INTO users_roles (user_id, role_id)
-VALUES (2, 2); -- user alex has role CREATOREDITOR
-INSERT INTO users_roles (user_id, role_id)
-VALUES (3, 3); -- user manager has role MANAGER
-INSERT INTO users_roles (user_id, role_id)
-VALUES (4, 4); -- user admin has role ADMIN*/

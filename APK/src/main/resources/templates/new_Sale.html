@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title> Corparation</title>
@@ -26,7 +26,7 @@
             <div class="navbar-brand">G &amp; A</div>
             <div>
                 <form th:action="@{/logout}" method="post">
-                    <a class="btn btn-light" href="/Land">Назад</a>
+                    <a class="btn btn-light" href="/Sale">Назад</a>
                     <input class="btn btn-light" type="submit" value="Выход"/>
                 </form>
             </div>
@@ -38,75 +38,85 @@
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4 mt-5">
-                <form action="#" th:object="${land}"  th:action="@{'/editLandSave/' + ${land.id}}" method="post"
+                <form action="#" th:object="${sale}"  th:action="@{/saveSale}" method="post"
                       class="row g-3 needs-validation"
                       novalidate>
-                    <h1 class="text-center">Изменить земельный участок</h1>
+                    <h1 class="text-center">Добавить продажу</h1>
                     <div class="mb-1">
-                        <h6>Местоположение</h6>
-                        <input type="text" th:field="*{location}" class="form-control"
-                               aria-describedby="emailHelp" placeholder="Местоположение" required>
+                        <h6>Продукт</h6>
+                        <input type="text" th:field="*{ProductType}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Продукт" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите местоположение.
+                            Пожалуйста, введите продукт.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Вид разрешенного использования</h6>
-                        <input type="text" th:field="*{type_permitted_use}" class="form-control"
-                               aria-describedby="emailHelp" placeholder="Вид разрешенного использования" required>
+                        <h6>Дата продажи</h6>
+                        <input type="text" th:field="*{DateSale}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Дата продажи" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите вид разрешенного использования.
+                            Пожалуйста, введите дата продажи.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Состояние</h6>
-                        <input type="text" th:field="*{actual}" class="form-control"
-                               aria-describedby="emailHelp" placeholder="Состояние" required>
+                        <h6>Единица измерения</h6>
+                        <input type="text" th:field="*{unit}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Единица измерения" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите состояние.
+                            Пожалуйста, введите единица измерения.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Фактическое использование</h6>
-                        <input type="text" th:field="*{conditions}" class="form-control" placeholder="Фактическое использование"
-                               required>
+                        <h6>Количество</h6>
+                        <input type="text" th:field="*{amount}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Количество" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите фактическое использование.
+                            Пожалуйста, введите количество.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Тип севооборота</h6>
-                        <input type="text" th:field="*{crop_rotation_type}" class="form-control"
-                               placeholder="Тип севооборота"
-                               required>
+                        <h6>Цена</h6>
+                        <input type="text" th:field="*{price}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Цена" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите тип севооборота.
+                            Пожалуйста, введите цена.
                         </div>
                     </div>
                     <div class="mb-1">
-                        <h6>Площадь з.у</h6>
-                        <input type="text" th:field="*{square}" class="form-control" placeholder="Площадь з.у"
-                               required>
+                        <h6>Выручка</h6>
+                        <input type="text" th:field="*{revenue}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Выручка" required>
                         <div class="valid-feedback">
                             OK!
                         </div>
                         <div class="invalid-feedback">
-                            Пожалуйста, введите площадь з.у.
+                            Пожалуйста, введите выручка.
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <h6>Прибыль</h6>
+                        <input type="text" th:field="*{profit}" class="form-control"
+                               aria-describedby="emailHelp" placeholder="Прибыль" required>
+                        <div class="valid-feedback">
+                            OK!
+                        </div>
+                        <div class="invalid-feedback">
+                            Пожалуйста, введите прибыль.
                         </div>
                     </div>
                     <div class="col-12">

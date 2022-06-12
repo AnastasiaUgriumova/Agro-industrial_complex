@@ -18,6 +18,8 @@ public class Sale {
 
     private int amount;
 
+    private int price;
+
     private int revenue;
 
     private int profit;
@@ -29,6 +31,14 @@ public class Sale {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Company productToSale;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public Company getCompanyToSale() {
         return companyToSale;

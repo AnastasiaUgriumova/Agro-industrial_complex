@@ -43,6 +43,7 @@
                       novalidate>
                     <h1 class="text-center">Добавить земельный участок</h1>
                     <div class="mb-1">
+                        <h6>Местоположение</h6>
                         <input type="text" th:field="*{location}" class="form-control"
                                aria-describedby="emailHelp" placeholder="Местоположение" required>
                         <div class="valid-feedback">
@@ -53,6 +54,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Вид разрешенного использования</h6>
                         <input type="text" th:field="*{type_permitted_use}" class="form-control"
                                aria-describedby="emailHelp" placeholder="Вид разрешенного использования" required>
                         <div class="valid-feedback">
@@ -63,6 +65,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Состояние</h6>
                         <input type="text" th:field="*{actual}" class="form-control"
                                aria-describedby="emailHelp" placeholder="Состояние" required>
                         <div class="valid-feedback">
@@ -73,6 +76,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Фактическое использование</h6>
                         <input type="text" th:field="*{conditions}" class="form-control" placeholder="Фактическое использование"
                                required>
                         <div class="valid-feedback">
@@ -83,6 +87,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Тип севооборота</h6>
                         <input type="text" th:field="*{crop_rotation_type}" class="form-control"
                                placeholder="Тип севооборота"
                                required>
@@ -94,6 +99,7 @@
                         </div>
                     </div>
                     <div class="mb-1">
+                        <h6>Площадь з.у</h6>
                         <input type="text" th:field="*{square}" class="form-control" placeholder="Площадь з.у"
                                required>
                         <div class="valid-feedback">
